@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+      "paths": {
+      "@config/*":["config/*"],
+      "@controller/*":["controller/*"],
+      "@exception/*":["exception/*"],
+      "@interface/*":["interface/*"],
+      "@lib/*":["lib/*"],
+      "@middleware/*":["middleware/*"],
+      "@model/*":["model/*"],
+      "@services/*":["services/*"],
+      "@validation/*":["validation/*"]
+    },
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "target": "es2017",
+    "noImplicitAny": false,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowJs": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
+}
+
