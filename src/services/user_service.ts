@@ -34,7 +34,7 @@ export class UserService {
   async Update(user: User): Promise<User> {
     ValidateSchema<User>(UpdateUserSchema, user).throwErrorIfNeeded();
     const exists = await this.FindBy("id", user.id);
-    if (exists) {
+    if (!exists) {
       throw new BadRequestError(user.id + " did'nt exists", "BAD_REQUEST");
     }
     if (user.password) {
@@ -43,7 +43,7 @@ export class UserService {
       user.password = hashedPassword;
     }
     user.updatedDate = new Date();
-    await this.db.getRepository(User).save(user);
+    await this.db.getRepository(User).update({ id: user.id }, user);
     return user;
   }
 
