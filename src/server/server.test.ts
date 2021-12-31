@@ -8,7 +8,6 @@ import { NewServer } from "./server";
 let testDB: Connection;
 let context: TransactionalTestContext;
 let server: Server;
-let port: string;
 let host: string;
 
 jest.mock("typeorm-transactional-cls-hooked", () => ({
@@ -25,12 +24,11 @@ beforeAll(async () => {
   testDB = serverTest.db;
   context = new TransactionalTestContext(testDB);
   await context.start();
-  port = serverTest.port;
-  host = "http://localhost:" + port;
-  server = serverTest.app.listen(port);
+  host = "http://localhost:" + serverTest.port;
+  server = serverTest.app.listen(serverTest.port);
 });
 
-afterEach(async () => {
+afterAll(async () => {
   if (testDB && context && server) {
     await context.finish();
     await testDB.close();
