@@ -1,11 +1,15 @@
 import * as express from "express";
 import * as cors from "cors";
+import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from "typeorm-transactional-cls-hooked";
 import { Config, NewTypeOrm } from "@config/index";
 import { ExpressHandlerWrap, ExppressAuth, ExpressErrorCatcher } from "@middleware/index";
 import { UserService } from "@services/index";
 import { NewUserController } from "@controller/index";
 
 export async function NewServer(): Promise<{ app: express.Express; port: string }> {
+  initializeTransactionalContext();
+  patchTypeORMRepositoryWithBaseRepository();
+
   const app = express();
   const config = new Config();
   const database = await NewTypeOrm(config);
