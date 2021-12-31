@@ -1,6 +1,6 @@
 import * as env from "dotenv";
 
-process.env.NODE_ENV === "development" ? env.config() : null;
+process.env.NODE_ENV !== "production" ? env.config() : null;
 
 export type IConfig = Config;
 export class Config {
@@ -11,6 +11,6 @@ export class Config {
   username = process.env.TYPEORM_USERNAME;
   password = process.env.TYPEORM_PASSWORD;
   database = process.env.TYPEORM_DATABASE;
-  TYPEORM_IS_LOGGING = process.env.TYPEORM_LOGGING;
-  logging = this.TYPEORM_IS_LOGGING === "false" ? false : true;
+  TYPEORM_LOGGER = process.env.TYPEORM_LOGGER;
+  logging = this.TYPEORM_LOGGER === "all" ? "all" : ("error" as any);
 }
