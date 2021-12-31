@@ -6,8 +6,9 @@
   "scripts": {
     "start-prod": "export NODE_ENV=production && node .",
     "start-dev": "export NODE_ENV=development && node .",
+    "typeorm": "./node_modules/.bin/typeorm",
     "test": "./node_modules/.bin/jest",
-    "tsc": "./node_modules/.bin/tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist --silent",
+    "tsc": "./node_modules/.bin/tsc --project tsconfig.build.json && tscpaths -p tsconfig.json -s ./src -o ./dist --silent",
     "lint": "./node_modules/.bin/eslint . --ext .ts --quiet --fix",
     "build": "npm run lint && npm run tsc",
     "restart": "npm run build && npm run start"
@@ -21,27 +22,21 @@
     "roots": [
       "<rootDir>/src/"
     ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
+    "moduleFileExtensions": ["ts", "js"],
+    "testMatch": ["<rootDir>/src/**/*.test.+(ts)"],
     "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
+     "^.+\\.(ts|tsx)$": "ts-jest"
     },
-    "testMatch": [
-      "<rootDir>/src/*/*.test.+(ts)"
-    ],
     "moduleNameMapper": {
-      "@config/(.*)": "<rootDir>/src/config/$1",
-      "@controller/(.*)": "<rootDir>/src/controller/$1",
-      "@exception/(.*)": "<rootDir>/src/exception/$1",
-      "@interface/(.*)": "<rootDir>/src/interface/$1",
-      "@lib/(.*)": "<rootDir>/src/lib/$1",
-      "@middleware/(.*)": "<rootDir>/src/middleware/$1",
-      "@model/(.*)": "<rootDir>/src/model/$1",
-      "@services/(.*)": "<rootDir>/src/services/$1",
-      "@validation/(.*)": "<rootDir>/src/validation/$1"
+     "@config/(.*)": "<rootDir>/src/config/$1",
+     "@controller/(.*)": "<rootDir>/src/controller/$1",
+     "@exception/(.*)": "<rootDir>/src/exception/$1",
+     "@interface/(.*)": "<rootDir>/src/interface/$1",
+     "@lib/(.*)": "<rootDir>/src/lib/$1",
+     "@middleware/(.*)": "<rootDir>/src/middleware/$1",
+     "@model/(.*)": "<rootDir>/src/model/$1",
+     "@services/(.*)": "<rootDir>/src/services/$1",
+     "@validation/(.*)": "<rootDir>/src/validation/$1"
     }
   },
   "eslintConfig": {
@@ -91,8 +86,8 @@
     "express-session": "^1.17.1",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1",
     "nanoid": "^3.1.20",
+    "pg": "^8.7.1",
     "ramda": "0.25.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.41",
@@ -104,7 +99,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/express-session": "^1.17.3",
-    "@types/jest": "^26.0.19",
+    "@types/jest": "^27.4.0",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.0.12",
     "@types/ramda": "0.25.24",
@@ -115,12 +110,16 @@
     "eslint": "^7.6.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "jest": "^26.6.3",
+    "jest": "^27.4.5",
+    "jest-environment-node-single-context": "^27.2.0",
     "prettier": "^2.2.1",
     "supertest": "^6.0.1",
-    "ts-jest": "^26.5.3",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
     "typeorm-test-transactions": "^3.6.1",
+    "typeorm-transactional-tests": "^1.1.5",
     "types-joi": "^2.1.0",
     "typescript": "^4.5.4"
   }
 }
+

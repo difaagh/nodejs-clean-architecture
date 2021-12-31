@@ -5,9 +5,9 @@
       "@config/*":["config/*"],
       "@controller/*":["controller/*"],
       "@exception/*":["exception/*"],
-      "@interface/*":["interface/*"],
       "@lib/*":["lib/*"],
       "@middleware/*":["middleware/*"],
+      "@migrations/*":["migrations/*"],
       "@model/*":["model/*"],
       "@services/*":["services/*"],
       "@validation/*":["validation/*"]
@@ -23,7 +23,6 @@
     "skipLibCheck": true,
     "allowJs": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.ts"]
+  "include": ["src/**/*"]
 }
 
