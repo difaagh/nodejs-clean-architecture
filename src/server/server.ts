@@ -1,18 +1,27 @@
 import * as express from "express";
 import * as cors from "cors";
+import { Connection } from "typeorm";
 import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from "typeorm-transactional-cls-hooked";
 import { Config, NewTypeOrm } from "@config/index";
 import { ExpressHandlerWrap, ExppressAuth, ExpressErrorCatcher } from "@middleware/index";
 import { UserService } from "@services/index";
 import { NewUserController } from "@controller/index";
 
-export async function NewServer(): Promise<{ app: express.Express; port: string }> {
-  initializeTransactionalContext();
-  patchTypeORMRepositoryWithBaseRepository();
+type Server = { app: express.Express; port: string; db: Connection };
+
+type DI = {
+  Transactional: typeof initializeTransactionalContext;
+  PatchRepository: typeof patchTypeORMRepositoryWithBaseRepository;
+  DataBase: typeof NewTypeOrm;
+};
+
+export async function NewServer(_: DI): Promise<Server> {
+  _.Transactional();
+  _.PatchRepository();
 
   const app = express();
   const config = new Config();
-  const database = await NewTypeOrm(config);
+  const database = await _.DataBase(config);
   const userService = new UserService(database);
   const userController = NewUserController(express.Router(), ExpressHandlerWrap, ExppressAuth, userService);
   app.use(cors());
@@ -21,5 +30,5 @@ export async function NewServer(): Promise<{ app: express.Express; port: string 
   app.use(userController);
   app.use(ExpressErrorCatcher);
 
-  return { app, port: config.PORT };
+  return { app, port: config.PORT, db: database };
 }

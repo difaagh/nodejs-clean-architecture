@@ -1,13 +1,9 @@
-import * as express from "express";
 import { Connection } from "typeorm";
-import * as cors from "cors";
 import { Server } from "http";
-import { Config, NewTestDB } from "@config/index";
-import { ExpressHandlerWrap, ExppressAuth, ExpressErrorCatcher } from "@middleware/index";
-import { UserService } from "@services/index";
-import { NewUserController } from "@controller/index";
+import { NewTestDB } from "@config/index";
 import { NewHttpRequest } from "@lib/http_request";
 import { TransactionalTestContext } from "typeorm-transactional-tests";
+import { NewServer } from "./server";
 
 let testDB: Connection;
 let context: TransactionalTestContext;
@@ -21,23 +17,17 @@ jest.mock("typeorm-transactional-cls-hooked", () => ({
 }));
 
 beforeAll(async () => {
-  const app = express();
-  const config = new Config();
-  testDB = await NewTestDB(config);
+  const serverTest = await NewServer({
+    Transactional: jest.fn(),
+    PatchRepository: jest.fn(),
+    DataBase: NewTestDB,
+  });
+  testDB = serverTest.db;
   context = new TransactionalTestContext(testDB);
   await context.start();
-  const userService = new UserService(testDB);
-  const userController = NewUserController(express.Router(), ExpressHandlerWrap, ExppressAuth, userService);
-  app.use(cors());
-  app.get("/", ({}, res, {}) => res.sendStatus(200));
-  app.use(express.json());
-  app.use(userController);
-  app.use(ExpressErrorCatcher);
-
-  const serverTest = app;
-  port = config.PORT;
+  port = serverTest.port;
   host = "http://localhost:" + port;
-  server = serverTest.listen(port);
+  server = serverTest.app.listen(port);
 });
 
 afterEach(async () => {
