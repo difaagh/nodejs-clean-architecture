@@ -7,21 +7,15 @@ const dataToJwt = {
 
 let token = "";
 
-describe("test generate jwt token", () => {
-  it("should generate jwt token", (done) => {
-    token = JwtGenerate(dataToJwt);
-    expect(token).not.toBeNull();
-    done();
-  });
+test("create-jwt-token", () => {
+  token = JwtGenerate(dataToJwt);
+  expect(token).not.toBeNull();
 });
 
-describe("test validate jwt token", () => {
-  it("should pass the expected", (done) => {
-    const { decoded, valid } = JwtValidate(token);
-    expect(decoded).not.toBeNull();
-    expect(valid).toBe(true);
-    expect(decoded.name).toBe(dataToJwt.name);
-    expect(decoded.email).toBe(dataToJwt.email);
-    done();
-  });
+test("validate-jwt-token", () => {
+  const { decoded, valid } = JwtValidate(token);
+  expect(decoded).not.toBeNull();
+  expect(valid).toBe(true);
+  expect(decoded.name).toBe(dataToJwt.name);
+  expect(decoded.email).toBe(dataToJwt.email);
 });
