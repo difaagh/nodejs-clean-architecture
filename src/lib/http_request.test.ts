@@ -1,9 +1,6 @@
-import { HttpRequest } from "./http_request";
+import { NewHttpRequest } from "./http_request";
 
-describe("test http request function", () => {
-  it("should response 200 ok", async (done) => {
-    const response = await HttpRequest("https://google.com", "/", "GET");
-    expect(response.status).toBe(200);
-    done();
-  });
+test("http-request-get", async () => {
+  const response = await NewHttpRequest("https://google.com", "/", "GET", null);
+  expect(response.status).toBe(200);
 });

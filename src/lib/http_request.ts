@@ -1,7 +1,7 @@
 import Axios, { AxiosResponse } from "axios";
 import { BadRequestError } from "@exception/index";
 
-export type IHttpRequest = typeof HttpRequest;
+export type IHttpRequest = typeof NewHttpRequest;
 
 export type HttpResponse<T> = AxiosResponse<T>;
 
@@ -10,7 +10,7 @@ export type HttpRequestImpl = {
   httpRequest: IHttpRequest;
 };
 
-export async function HttpRequest<T>(
+export async function NewHttpRequest<T>(
   host: string,
   path: string,
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
