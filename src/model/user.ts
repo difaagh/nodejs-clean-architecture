@@ -1,7 +1,8 @@
 import { Entity, PrimaryColumn, Column } from "typeorm";
 import { BaseModel } from "./model";
+import { USER_TABLE } from "@config/constants";
 
-@Entity({ name: "user_table" })
+@Entity({ name: USER_TABLE })
 export class User extends BaseModel {
   @PrimaryColumn({ name: "id" })
   id?: string;
