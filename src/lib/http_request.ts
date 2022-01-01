@@ -41,10 +41,13 @@ export async function NewHttpRequest<T>(
         }
         if (error.response.status === 404) {
           if (!disableConsole) {
-            console.error(`${error.config.url ? error.config.url : "url"} not found`);
+            console.error(`${error.config.method} ${error.config.url ? error.config.url : "url"} not found`);
             console.error("####### END ERROR #######");
           }
-          throw new BadRequestError(`${error.config.url ? error.config.url : "url"} not found`, "HTTP_REQUEST_ERROR");
+          throw new BadRequestError(
+            `${error.config.method} ${error.config.url ? error.config.url : "url"} not found`,
+            "HTTP_REQUEST_ERROR"
+          );
         }
         if (error.response.data !== undefined) {
           if (error.response.data.message) {

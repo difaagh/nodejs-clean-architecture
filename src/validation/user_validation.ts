@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import { User } from "@model/user";
 
 export const CreateUserSchema: Joi.ObjectSchema<User> = Joi.object().keys({
-  id: Joi.string().default(uuid()).forbidden(),
+  id: Joi.string().default(uuid()),
   name: Joi.string().max(250).required(),
   password: Joi.string().max(250).required(),
   email: Joi.string().email().max(250).required(),

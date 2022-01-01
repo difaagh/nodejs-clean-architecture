@@ -27,7 +27,7 @@ function GetAll(userService: UserService): RequestHandler {
 
 function GetById(userService: UserService): RequestHandler {
   return async function (req, res, {}) {
-    const user = await userService.FindBy("id", req.param["id"]);
+    const user = await userService.FindBy("id", req.params["id"]);
     res.status(200).send(user);
   };
 }
@@ -48,7 +48,7 @@ function Update(userService: UserService): RequestHandler {
 
 function DeleteById(userService: UserService): RequestHandler {
   return async function (req, res, {}) {
-    const user = await userService.Create(req.param["id"]);
+    const user = await userService.Delete(req.params["id"]);
     res.status(200).send(user);
   };
 }
