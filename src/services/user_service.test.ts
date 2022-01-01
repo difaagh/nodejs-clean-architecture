@@ -2,8 +2,8 @@ import { Connection } from "typeorm";
 import { NewTestDB } from "@config/type_orm";
 import { Config } from "@config/config";
 import { UserService } from "./user_service";
-import { User } from "@model/index";
 import { TransactionalTestContext } from "typeorm-transactional-tests";
+import { CreateUserDataTest } from "./user_fixture";
 
 jest.mock("typeorm-transactional-cls-hooked", () => ({
   Transactional: () => () => ({}),
@@ -29,7 +29,7 @@ afterAll(async () => {
 });
 
 test("create-user", async () => {
-  const user: User = { email: "1@email.com", name: "john doe", password: "password" };
+  const user = CreateUserDataTest();
   const createdUser = await userService.Create(user);
 
   expect(createdUser).not.toEqual(undefined);
@@ -37,19 +37,18 @@ test("create-user", async () => {
 });
 
 test("update-user", async () => {
-  const user: User = { email: "2@email.com", name: "john doe", password: "password" };
-  const createdUser = await userService.Create(user);
+  const user = CreateUserDataTest();
+  await userService.Create(user);
 
-  const userUpdate: User = { id: createdUser.id, email: "email@change.com", name: "doe john", password: "password2" };
+  const userUpdate = { id: user.id, email: "email@change.com", name: "doe john", password: "password2" };
   const updatedUser = await userService.Update(userUpdate);
 
-  const isUserUpdated =
-    updatedUser.email !== createdUser.email && updatedUser.name !== createdUser.name && updatedUser.password !== createdUser.password;
+  const isUserUpdated = updatedUser.email !== user.email && updatedUser.name !== user.name && updatedUser.password !== user.password;
   expect(isUserUpdated).toBeTruthy();
 });
 
 test("find-by-user", async () => {
-  const user: User = { email: "3@email.com", name: "john doe", password: "password" };
+  const user = CreateUserDataTest();
   const createdUser = await userService.Create(user);
 
   const retriviedUser = await userService.FindBy("id", createdUser.id);
@@ -58,7 +57,7 @@ test("find-by-user", async () => {
 });
 
 test("delete-user", async () => {
-  const user: User = { email: "4@email.com", name: "john doe", password: "password" };
+  const user = CreateUserDataTest();
   const createdUser = await userService.Create(user);
 
   try {
@@ -69,7 +68,7 @@ test("delete-user", async () => {
 });
 
 test("login-user", async () => {
-  const user: User = { email: "5@email.com", name: "john doe", password: "password" };
+  const user = CreateUserDataTest();
   await userService.Create(user);
 
   const token = await userService.Login(user.email, user.password);
