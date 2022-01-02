@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column } from "typeorm";
 import { BaseModel } from "./model";
-import { USER_TABLE } from "@config/constants";
+import { USER_TABLE } from "@src/config/constants";
 
 @Entity({ name: USER_TABLE })
 export class User extends BaseModel {

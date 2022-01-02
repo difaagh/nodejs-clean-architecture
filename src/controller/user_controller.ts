@@ -1,6 +1,6 @@
 import { IRouter, RequestHandler } from "express";
-import { IExpressHandlerWrap } from "@middleware/express_handler_wrap";
-import { UserService } from "@services/user_service";
+import { IExpressHandlerWrap } from "@src/middleware/express_handler_wrap";
+import { UserService } from "@src/services/user_service";
 
 export function NewUserController(
   router: IRouter,

@@ -1,4 +1,4 @@
-import { BadRequestError } from "@exception/index";
+import { BadRequestError } from "@src/exception/index";
 import { Request, Response, NextFunction } from "express";
 
 enum ErrorCodes {

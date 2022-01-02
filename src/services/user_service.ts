@@ -1,11 +1,11 @@
 import { Connection } from "typeorm";
 import { Transactional } from "typeorm-transactional-cls-hooked";
 import * as bcrypt from "bcrypt";
-import { User } from "@model/index";
-import { ValidateSchema } from "@validation/validation";
-import { CreateUserSchema, UpdateUserSchema } from "@validation/user_validation";
-import { JwtGenerate } from "@lib/jwt";
-import { BadRequestError } from "@exception/index";
+import { User } from "@src/model/index";
+import { ValidateSchema } from "@src/validation/validation";
+import { CreateUserSchema, UpdateUserSchema } from "@src/validation/user_validation";
+import { JwtGenerate } from "@src/lib/jwt";
+import { BadRequestError } from "@src/exception/index";
 
 export class UserService {
   db: Connection;

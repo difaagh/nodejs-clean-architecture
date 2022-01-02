@@ -1,5 +1,5 @@
 import Axios, { AxiosResponse } from "axios";
-import { BadRequestError } from "@exception/index";
+import { BadRequestError } from "@src/exception/index";
 
 export type IHttpRequest = typeof NewHttpRequest;
 

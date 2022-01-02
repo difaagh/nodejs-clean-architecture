@@ -1,6 +1,7 @@
+import "./aliases";
 import { NewServer } from "./server/server";
 import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from "typeorm-transactional-cls-hooked";
-import { NewTypeOrm } from "@config/index";
+import { NewTypeOrm } from "@src/config/index";
 
 (async () => {
   try {

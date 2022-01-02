@@ -1,16 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
       "paths": {
-      "@config/*":["config/*"],
-      "@controller/*":["controller/*"],
-      "@exception/*":["exception/*"],
-      "@lib/*":["lib/*"],
-      "@middleware/*":["middleware/*"],
-      "@migrations/*":["migrations/*"],
-      "@model/*":["model/*"],
-      "@services/*":["services/*"],
-      "@validation/*":["validation/*"]
+      "@src/*":["src/*"]
     },
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,

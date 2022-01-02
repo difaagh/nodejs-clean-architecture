@@ -1,5 +1,5 @@
 import { ObjectSchema } from "types-joi";
-import { BadRequestError } from "@exception/bad_request";
+import { BadRequestError } from "@src/exception/bad_request";
 
 export function ValidateSchema<T>(schema: ObjectSchema<T>, val: T) {
   if (!val) {

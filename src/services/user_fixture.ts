@@ -1,4 +1,4 @@
-import { User } from "@model/user";
+import { User } from "@src/model/user";
 import { nanoid } from "nanoid";
 import { v4 as uuid } from "uuid";
 

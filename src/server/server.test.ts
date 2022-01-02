@@ -1,12 +1,12 @@
 import { Connection } from "typeorm";
 import { Server } from "http";
-import { NewTestDB } from "@config/index";
-import { NewHttpRequest } from "@lib/http_request";
+import { NewTestDB } from "@src/config/index";
+import { NewHttpRequest } from "@src/lib/http_request";
 import { TransactionalTestContext } from "typeorm-transactional-tests";
 import { NewServer } from "./server";
-import { UserService } from "@services/user_service";
-import { CreateUserDataTest } from "@services/user_fixture";
-import { User } from "@model/user";
+import { UserService } from "@src/services/user_service";
+import { CreateUserDataTest } from "@src/services/user_fixture";
+import { User } from "@src/model/user";
 
 let testDB: Connection;
 let context: TransactionalTestContext;

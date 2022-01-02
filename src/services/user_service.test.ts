@@ -1,6 +1,6 @@
 import { Connection } from "typeorm";
-import { NewTestDB } from "@config/type_orm";
-import { Config } from "@config/config";
+import { NewTestDB } from "@src/config/type_orm";
+import { Config } from "@src/config/config";
 import { UserService } from "./user_service";
 import { TransactionalTestContext } from "typeorm-transactional-tests";
 import { CreateUserDataTest } from "./user_fixture";

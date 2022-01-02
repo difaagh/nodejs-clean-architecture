@@ -1,6 +1,6 @@
 import * as Joi from "types-joi";
 import { v4 as uuid } from "uuid";
-import { User } from "@model/user";
+import { User } from "@src/model/user";
 
 export const CreateUserSchema: Joi.ObjectSchema<User> = Joi.object().keys({
   id: Joi.string().default(uuid()),

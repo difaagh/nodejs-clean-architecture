@@ -2,10 +2,10 @@ import * as express from "express";
 import * as cors from "cors";
 import { Connection } from "typeorm";
 import { initializeTransactionalContext, patchTypeORMRepositoryWithBaseRepository } from "typeorm-transactional-cls-hooked";
-import { Config, NewTypeOrm } from "@config/index";
-import { ExpressHandlerWrap, ExppressAuth, ExpressErrorCatcher } from "@middleware/index";
-import { UserService } from "@services/index";
-import { NewUserController } from "@controller/index";
+import { Config, NewTypeOrm } from "@src/config/index";
+import { ExpressHandlerWrap, ExppressAuth, ExpressErrorCatcher } from "@src/middleware/index";
+import { UserService } from "@src/services/index";
+import { NewUserController } from "@src/controller/index";
 
 type Server = { app: express.Express; port: string; db: Connection };
 

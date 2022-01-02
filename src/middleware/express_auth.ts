@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtValidate } from "@lib/jwt";
+import { JwtValidate } from "@src/lib/jwt";
 
 export function ExppressAuth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers.authorization) {
