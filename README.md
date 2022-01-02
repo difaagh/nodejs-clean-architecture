@@ -40,6 +40,13 @@ mv .env_example_for_development .env
 # if you choose to not use postgres then change the TYPEORM_TYPE="postgres" to TYPEORM_TYPE="{database you choose}"
 ```
 
+## Migration
+
+```shell
+npm run typeorm -- migration:create  migration_name
+# move the created migration file to the ./src/migrations
+```
+
 ## Test the project
 ```
 cd nodejs-clean-architecture
@@ -49,9 +56,17 @@ npm run test
 
 ## Start a project
 
+development :
 ```shell
 cd nodejs-clean-architecture
 
-npm run build && npm run start
+npm run start-dev
+```
+
+production :
+```shell
+cd nodejs-clean-architecture
+
+npm run build && npm run start-prod
 ```
 
