@@ -19,7 +19,7 @@
   "jest": {
     "testEnvironment": "node",
     "roots": ["<rootDir>/src/"],
-    "moduleFileExtensions": ["ts"],
+    "moduleFileExtensions": ["ts", "js"],
     "testMatch": ["<rootDir>/src/**/*.test.+(ts)"],
     "transform": {
       "^.+\\.(ts|tsx)$": "ts-jest"
